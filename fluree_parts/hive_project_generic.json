@@ -1,0 +1,43 @@
+[
+  [
+    {
+       "_id" : "_collection",
+       "name" : "hive_project"
+    },
+    {
+       "name" : "hive_project/name",
+       "_id" : "_predicate",
+       "unique" : true,
+       "type" : "string"
+    },
+    {
+       "name" : "hive_project/owner",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "_user"
+    },
+    {
+       "name" : "hive_project/witness_aproved",
+       "_id" : "_predicate",
+       "type" : "boolean"
+    }
+  ],
+  [
+    {     
+       "_id" : "_collection",
+       "name" : "witness_vote"
+    }
+  ],
+  [
+    {
+       "_id" : "_collection",
+       "name" : "hive_project_votable"
+    }
+  ],
+  [
+    {
+       "_id" : "_collection",
+       "name" : "votable_witness_vote"
+    }
+  ]
+]

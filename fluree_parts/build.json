@@ -1,0 +1,8 @@
+{
+  "default": [
+      "hive_project_generic",
+      "hive_roles",
+      "hive_project_roles",
+      "synchonizer"
+  ]
+}

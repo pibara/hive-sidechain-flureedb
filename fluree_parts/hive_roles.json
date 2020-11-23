@@ -1,0 +1,12 @@
+[
+  [
+    {
+      "_id": "_role",
+      "id": "hive_user"
+    },
+    {
+      "_id": "_role",
+      "id": "hive_witness"
+    }
+  ]
+]
