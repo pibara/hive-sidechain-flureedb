@@ -1,11 +1,24 @@
 [
   [
     {
+       "_id": "_user",
+       "username": "hive-fluree-sidechain",
+       "doc": "Fake user record acting as unconnected system root for the sidechain"
+    }
+  ],
+  [
+    {
        "_id" : "_collection",
        "name" : "hive_project"
     },
     {
        "name" : "hive_project/name",
+       "_id" : "_predicate",
+       "unique" : true,
+       "type" : "string"
+    },
+    {
+       "name" : "hive_project/proposal",
        "_id" : "_predicate",
        "unique" : true,
        "type" : "string"
@@ -17,27 +30,244 @@
        "restrictCollection" : "_user"
     },
     {
-       "name" : "hive_project/witness_aproved",
+       "name" : "hive_project/approved",
        "_id" : "_predicate",
        "type" : "boolean"
+    },
+    {
+       "name" : "hive_project/rejected",
+       "_id" : "_predicate",
+       "type" : "boolean"
+    },
+    {
+       "name" : "hive_project/created",
+       "_id" : "_predicate",
+       "type" : "instant"
+    },
+    {
+       "name" : "hive_project/decided",
+       "_id" : "_predicate",
+       "type" : "instant"
+    },
+    {
+      "_id": "hive_project",
+      "name": "fluree-sidechain",
+      "proposal": "/@mattockfs/hive-ads-project-first-weekly-progress-report",
+      "owner": ["_user/username", "hive-fluree-sidechain"],
+      "approved": true,
+      "rejected": false,
+      "created": 0,
+      "decided": 0
     }
   ],
+  [
+    {
+       "_id" : "_collection",
+       "name" : "sidechain_votable_value"
+    },
+    {
+       "name" : "sidechain_votable_value/name",
+       "_id" : "_predicate",
+       "unique" : true,
+       "type" : "string"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/latest_value",
+       "type" : "double"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/default",
+       "type" : "double"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/min",
+       "type" : "double"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/max",
+       "type" : "double"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/default_weight",
+       "type" : "double"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/users_weight",
+       "type" : "double"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/witnesses_weight",
+       "type" : "double"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value/project",
+       "type" : "ref",
+       "restrictCollection" : "hive_project"
+    },
+    {
+        "_id": "sidechain_votable_value",
+	"name": "project_approve_vote_treshold",
+	"latest_value": 10000000,
+	"default": 10000000,
+	"min": 100000,
+	"max": 100000000,
+	"default_weight": 20,
+	"users_weight": 20,
+	"witnesses_weight": 60,
+	"project": ["hive_project", "fluree-sidechain"]
+    },
+    {
+        "_id": "sidechain_votable_value",
+        "name": "project_reject_vote_treshold",
+        "latest_value": 10000000,
+        "default": 10000000,
+        "min": 100000,
+        "max": 100000000,
+        "default_weight": 20,
+        "users_weight": 20,
+        "witnesses_weight": 60,
+        "project": ["hive_project", "fluree-sidechain"]
+    },
+    {
+        "_id": "sidechain_votable_value",
+        "name": "project_approve_witness_vote_treshold",
+        "latest_value": 10000000,
+        "default": 10000000,
+        "min": 100000,
+        "max": 100000000,
+        "default_weight": 20,
+        "users_weight": 20,
+        "witnesses_weight": 60,
+        "project": ["hive_project", "fluree-sidechain"]
+    },
+    {
+        "_id": "sidechain_votable_value",
+        "name": "project_reject_witness_vote_treshold",
+        "latest_value": 10000000,
+        "default": 10000000,
+        "min": 100000,
+        "max": 100000000,
+        "default_weight": 20,
+        "users_weight": 20,
+        "witnesses_weight": 60,
+        "project": ["hive_project", "fluree-sidechain"]
+    }
+  ],
+  [
+    {
+       "_id" : "_collection",
+       "name" : "sidechain_votable_value_vote"
+    },
+    {
+       "_id" : "_predicate",
+       "name": "sidechain_votable_value_vote/value",
+       "type" : "double"
+    },
+    {
+       "name" : "sidechain_votable_value_vote/votable",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "sidechain_votable"
+    },
+    {
+       "name" : "sidechain_votable_value_vote/voter",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "_user"
+    }
+  ],
+  [
+    {
+       "_id" : "_collection",
+       "name" : "sidechain_votable_issue"
+    },
+    {
+       "name" : "sidechain_votabale_issue/name",
+       "_id" : "_predicate",
+       "unique" : true,
+       "type" : "string"
+    },
+    {
+       "name" : "sidechain_votable_issue/user_decided",
+       "_id" : "_predicate",
+       "type" : "boolean"
+    },
+    {
+       "name" : "sidechain_votable_issue/witness_decided",
+       "_id" : "_predicate",
+       "type" : "boolean"
+    },
+    {
+       "name" : "sidechain_votable_issue/approved",
+       "_id" : "_predicate",
+       "type" : "boolean"
+    },
+    {
+       "name" : "sidechain_votable_issue/witness_precedence",
+       "_id" : "_predicate",
+       "type" : "boolean"
+    },
+    {
+       "name" : "sidechain_votable_issue/approve_hp_treshold",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "sidechain_votable_value"
+    },
+    {
+       "name" : "sidechain_votable_issue/reject_hp_treshold",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "sidechain_votable_value"
+    },
+    {
+       "name" : "sidechain_votable_issue/project",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "hive_project"
+    },
+    {
+       "_id": "sidechain_votable_issue",
+       "name": "project_approval",
+       "user_decided": false,
+       "witness_decided": false,
+       "approved": false,
+       "approve_hp_treshold": ["sidechain_votable_value/name","project_approve_vote_treshold"],
+       "reject_hp_treshold": ["sidechain_votable_value/name","project_reject_vote_treshold"],
+       "witness_approve_treshold": ["sidechain_votable_value/name","project_approve_vote_treshold"],
+       "witness_reject_treshold": ["sidechain_votable_value/name","project_reject_vote_treshold"],
+       "witness_precedence": false,
+       "project": ["hive_project/name", "fluree-sidechain"]
+    }
+  ]
   [
     {     
        "_id" : "_collection",
-       "name" : "witness_vote"
-    }
-  ],
-  [
+       "name" : "sidechain_votable_issue_vote"
+    },
     {
-       "_id" : "_collection",
-       "name" : "hive_project_votable"
-    }
-  ],
-  [
+       "name" : "sidechain_votable_issue_vote/issue",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "sidechain_votable_issue"
+    },
     {
-       "_id" : "_collection",
-       "name" : "votable_witness_vote"
+       "name" : "sidechain_votable_issue_vote/voter",
+       "_id" : "_predicate",
+       "type" : "ref",
+       "restrictCollection" : "_user"
+    },
+    {
+       "name" : "project_vote/approve",
+       "_id" : "_predicate",
+       "type" : "boolean"
     }
   ]
 ]
